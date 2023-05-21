@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Tanks v2</title>
+</head>
+
+<body>
+    <!-- <audio src="audio/move.mp3" autoplay="true"></audio> -->
+    <h1>TANKS</h1>
+    <div class="playerContainer">
+        <div class="player player1">
+            <div class="name name1">Player 1</div>
+            <div class="hp hp1"></div>
+        </div>
+        <div class="time"></div>
+        <div class="player player2">
+            <div class="name name2">Player 2</div>
+            <div class="hp hp2"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div id="winner"></div>
+    </div>
+    <div id="guide">
+        <div class="arrow">
+            <div class="letters">
+                <p>g</p>
+                <p>u</p>
+                <p>i</p>
+                <p>d</p>
+                <p>e</p>
+            </div>
+            <img id="toggleArrow" src="images/guide_right.png" alt="" srcset="">
+        </div>
+        <div class="buttons">
+            <div class="button space"><img src="images/space key.png" alt="" srcset="">hold to increase power, release
+                to
+                shoot</div>
+            <div class="button arrowLeft"><img src="images/left arrow key.png" alt="" srcset="">move back</div>
+            <div class="button arrowRight"><img src="images/right arrow key.png" alt="" srcset="">move forward</div>
+            <div class="button arrowUp"><img src="images/up arrow key.png" alt="" srcset="">cannon up</div>
+            <div class="button arrowDown"><img src="images/down arrow key.png" alt="" srcset="">cannon down</div>
+        </div>
+    </div>
+    <div id="explosion"></div>
+    <!-- <div id="bullet"></div> -->
+    <div id="shotExp"></div>
+    <div id="power">POWER</div>
+    <div class="container">
+        <div class="tanks" id="tank1">
+            <div class="fire fire1">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            <img src="images/telo tenka 2.png" alt="" srcset="">
+            <div id="turret1"></div>
+            <div id="cannon1"></div>
+            <div id="body1"></div>
+            <div id="track-shoe1">
+                <img src="images/gusenice.png" alt="" srcset="">
+            </div>
+            <div id="smoke1">
+                <div class="vapour">
+                    <span style="--i:1"></span>
+                    <span style="--i:3"></span>
+                    <span style="--i:8"></span>
+                    <span style="--i:5"></span>
+                </div>
+            </div>
+        </div>
+        <div class="tanks" id="tank2">
+            <div class="fire fire2">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            <img src="images/tiger body.png" alt="" srcset="">
+            <div id="turret2"> </div>
+            <div id="cannon2"></div>
+            <div id="body2"></div>
+            <div id="track-shoe2">
+                <img src="images/tiger gusenice.png" alt="" srcset="">
+            </div>
+            <div id="smoke2">
+                <div class="vapour">
+                    <span style="--i:1"></span>
+                    <span style="--i:3"></span>
+                    <span style="--i:8"></span>
+                    <span style="--i:5"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
