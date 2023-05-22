@@ -165,6 +165,8 @@ function resetGame(e) {
     let g = 0 //Right cannon rotation counter up
     let z = 0 //Right cannon rotation counter down
     let l = 0 //Power counter
+    tank1.style.transform = `translateX(${i1}px)`
+    tank2.style.transform = `translateX(${i1}px)`
     window.addEventListener('keydown', movements)
     window.addEventListener('keyup', shoot)
 }
