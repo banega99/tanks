@@ -260,6 +260,7 @@ html {
     padding: 3px;
     z-index: 100;
     border-radius: 3px;
+    transition: all linear;
 }
 
 #bullet {
@@ -271,9 +272,7 @@ html {
     width: 15px;
     height: 5px;
     z-index: -200;
-    /* top: 73.3%;
-    left: 14.5%; */
-    transition: transform 0.1s;
+    transition: transform;
 }
 
 #winner {

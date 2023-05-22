@@ -1,4 +1,6 @@
-let tank, tank1, tank2, turret, cannon, body, trackShoe, turret2, cannon2, body2, trackShoe2
+let tank, turret, cannon, body, trackShoe, turret2, cannon2, body2, trackShoe2
+let tank1 = document.querySelector(`#tank1`)
+let tank2 = document.querySelector(`#tank2`)
 // let bullet = document.querySelector(`#bullet`)
 let explosion = document.querySelector(`#explosion`)
 let shotExp = document.querySelector(`#shotExp`)
@@ -168,9 +170,10 @@ function resetGame(e) {
 }
 
 //Timer
+tankActive(1, 2)
 timer = startTimer()
 
-tankActive(1, 2)
+
 tank1.style.visibility = 'visible'
 tank1.style.transform = `translate(0px)`
 tank2.style.transform = 'translate(0px)'
@@ -178,7 +181,11 @@ tank2.style.visibility = 'visible'
 let n = 0
 const trackShoeUp = setInterval(function () {
     n++
-    if (n == 9) clearInterval(trackShoeUp)
+    if (n == 9) {
+        clearInterval(trackShoeUp)
+        tank1.style.transition = 'all 0.4s'
+        tank2.style.transition = 'all 0.4s'
+    }
     if (n % 2 === 0) {
         trackShoe.style.transform = `translateY(-2px)`
         trackShoe2.style.transform = `translateY(-2px)`
