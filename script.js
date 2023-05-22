@@ -114,6 +114,8 @@ function bulletPosition() {
 }
 
 function end(player) {
+    window.removeEventListener('keydown', movements)
+    window.removeEventListener('keyup', shoot)
     overlay.style.visibility = 'visible'
     winner.innerHTML = player == 'draw' ? `<h3>Draw!</h3><p id="reset">click here for new game</p>` : `<h3>${player} won!</h3><p id="reset">click here for new game</p>`
     overlay.addEventListener('click', resetGame)
@@ -251,16 +253,28 @@ function movements(e) {
         if (tank == 2 &&
             tank1.getBoundingClientRect().right >= container.getBoundingClientRect().right - 10) return
         e.preventDefault()
-        if (tank == 1) i1 += 10
-        else i2 += 10
-        moveTank()
+        if (tank == 1 && i1 <= 60) {
+            i1 += 10
+            moveTank()
+        }
+        else if(tank == 2 && i2 <= 60) {
+            i2 += 10
+            moveTank()
+        }
+        // moveTank()
     } else if (e.key === 'ArrowLeft') {
         if (tank == 1 &&
             tank1.getBoundingClientRect().left <= container.getBoundingClientRect().left) return
         e.preventDefault()
-        if (tank == 1) i1 -= 10
-        else i2 -= 10
-        moveTank()
+        if (tank == 1 && i1 >= -60) {
+            i1 -= 10
+            moveTank()
+        }
+        else if(tank == 2 && i2 >= -60) {
+            i2 -= 10
+            moveTank()
+        }
+        // moveTank()
     } else if (e.key === 'ArrowUp') {
         if (tank == 1 && k > -7) k--
         else if (tank == 2 && g < 7) {
@@ -299,8 +313,10 @@ function reset(bulletDrop, bulletCurve) {
     l = 0
     setTimeout(function () {
         explosion.style.visibility = 'hidden'
-        window.addEventListener('keydown', movements)
-        window.addEventListener('keyup', shoot)
+        if(tank2HP > 0 && tank1HP > 0){
+            window.addEventListener('keydown', movements)
+            window.addEventListener('keyup', shoot)
+        }
     }, 200)
 
 }
