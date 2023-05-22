@@ -37,8 +37,8 @@ toggleArrow.addEventListener('click', function (e) {
 let player1prompt
 let player2prompt
 
-// player1prompt = prompt('Player 1 name:')
-// player2prompt = prompt('Player 2 name:')
+player1prompt = prompt('Player 1 name:')
+player2prompt = prompt('Player 2 name:')
 
 let playerName1 = player1prompt ? player1prompt : 'Player 1'
 let playerName2 = player2prompt ? player2prompt : 'Player 2'
