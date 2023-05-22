@@ -19,6 +19,7 @@ let smoke2 = document.querySelector('#smoke2')
 const toggleArrow = document.querySelector('#toggleArrow')
 const guide = document.querySelector('#guide')
 
+
 toggleArrow.addEventListener('click', function (e) {
     if (guide.classList.contains('toggle')) {
         guide.classList.remove('toggle')
@@ -33,8 +34,11 @@ toggleArrow.addEventListener('click', function (e) {
 //     console.log(e)
 // })
 
-let player1prompt = prompt('Player 1 name:')
-let player2prompt = prompt('Player 2 name:')
+let player1prompt
+let player2prompt
+
+// player1prompt = prompt('Player 1 name:')
+// player2prompt = prompt('Player 2 name:')
 
 let playerName1 = player1prompt ? player1prompt : 'Player 1'
 let playerName2 = player2prompt ? player2prompt : 'Player 2'
@@ -42,11 +46,9 @@ let playerName2 = player2prompt ? player2prompt : 'Player 2'
 name1.textContent = playerName1
 name2.textContent = playerName2
 
-
 let docBody = document.querySelector('body')
 let bullet = document.createElement('div')
 bullet.id = 'bullet'
-// let css = new 
 
 let tank1HP = 1500
 let hp1 = document.querySelector('.hp1')
@@ -63,9 +65,6 @@ let winner = document.querySelector('#winner')
 
 function tankActive(active, passive) {
     tank = active
-
-    // if (tank == 1) bullet.id = 'bullet1'
-    // else bullet.id = 'bullet2'
     tank1 = document.querySelector(`#tank${active}`)
     tank2 = document.querySelector(`#tank${passive}`)
     turret = document.querySelector(`#turret${active}`)
@@ -76,8 +75,9 @@ function tankActive(active, passive) {
     cannon2 = document.querySelector(`#cannon${passive}`)
     body2 = document.querySelector(`#body${passive}`)
     trackShoe2 = document.querySelector(`#track-shoe${passive}`)
-    cannon.style.transform = ''
-    // console.log(bullet.getBoundingClientRect())
+    // cannon.style.transform = ''
+    if (getComputedStyle(cannon).transform !== 'none') bullet.style.transform = getComputedStyle(cannon).transform
+    if (getComputedStyle(cannon).transform !== 'none') shotExp.style.transform = getComputedStyle(cannon).transform
     // bulletPosition()
     if (tank == 2) {
         bullet.style.backgroundImage = `url('images/orange_bullet_right.png')`
@@ -94,25 +94,21 @@ function bulletPosition() {
     let cannonTop = cannon.getBoundingClientRect().top
     let cannonBottom = cannon.getBoundingClientRect().bottom
     let cannonRight = cannon.getBoundingClientRect().right
-    // console.log(cannon.getBoundingClientRect())
     if (tank == 1) {
         bullet.style.left = `${cannon.getBoundingClientRect().right + 5}px`
         bullet.style.top = `${cannonTop + ((cannonBottom - cannonTop) / 2.5)}px`
         shotExp.style.left = `${cannonRight - 10}px`
-        shotExp.style.top = `${cannonTop - shotExp.getBoundingClientRect().height / 2.5}px`
+        shotExp.style.top = `${cannonTop - shotExp.getBoundingClientRect().height / 2.6}px`
         power.style.left = `${tank1.getBoundingClientRect().left + tank1.getBoundingClientRect().width / 3}px`
         power.style.top = `${tank1.getBoundingClientRect().top - 20}px`
-
     } else {
         bullet.style.left = `${cannonLeft - 10}px`
         bullet.style.top = `${cannonTop + ((cannonBottom - cannonTop) / 2.25)}px`
         shotExp.style.left = `${cannonLeft - 25}px`
-        shotExp.style.top = `${cannonTop - shotExp.getBoundingClientRect().height / 3.3}px`
+        shotExp.style.top = `${cannonTop - shotExp.getBoundingClientRect().height / 3.7}px`
         power.style.left = `${tank1.getBoundingClientRect().left + tank1.getBoundingClientRect().width / 2}px`
         power.style.top = `${tank1.getBoundingClientRect().top - 20}px`
-
     }
-
 }
 
 function end(player) {
@@ -142,10 +138,6 @@ function startTimer() {
     return timer
 }
 
-
-
-
-
 function resetGame(e) {
     if (e.target.id !== 'reset') return
     tank1HP = 1500
@@ -153,11 +145,13 @@ function resetGame(e) {
     hp1.style.backgroundColor = 'green'
     smoke1.style.visibility = 'hidden'
     fire1.style.visibility = 'hidden'
+    cannon.style.transform = ''
     tank2HP = 1500
     hp2.style.width = `${tank2HP / 3}px`
     hp2.style.backgroundColor = 'green'
     smoke2.style.visibility = 'hidden'
     fire2.style.visibility = 'hidden'
+    cannon2.style.transform = ''
     overlay.style.visibility = 'hidden'
 
     tankActive(1, 2)
@@ -166,7 +160,8 @@ function resetGame(e) {
     let i1 = 0 //Movements counter tank1
     let i2 = 0 //Movements counter tank2
     let k = 0 //Cannon rotation counter
-    let z = 0 //Right cannon rotation counter
+    let g = 0 //Right cannon rotation counter up
+    let z = 0 //Right cannon rotation counter down
     let l = 0 //Power counter
     window.addEventListener('keydown', movements)
     window.addEventListener('keyup', shoot)
@@ -175,17 +170,13 @@ function resetGame(e) {
 //Timer
 timer = startTimer()
 
-
 tankActive(1, 2)
 tank1.style.visibility = 'visible'
 tank1.style.transform = `translate(0px)`
 tank2.style.transform = 'translate(0px)'
 tank2.style.visibility = 'visible'
 let n = 0
-// setTimeout(fdf
 const trackShoeUp = setInterval(function () {
-    // movementsSound1.play()
-    bulletPosition()
     n++
     if (n == 9) clearInterval(trackShoeUp)
     if (n % 2 === 0) {
@@ -197,16 +188,12 @@ const trackShoeUp = setInterval(function () {
         trackShoe2.style.transform = `translateY(1px)`
     }
 }, 80)
-// tank1.style.display = 'block'
-
-// bulletPosition()
-// console.log(getComputedStyle(tank1).transform)
-// console.log(container.getBoundingClientRect())
 
 let i1 = 0 //Movements counter tank1
 let i2 = 0 //Movements counter tank2
 let k = 0 //Cannon rotation counter
-let z = 0 //Right cannon rotation counter
+let g = 0 //Right cannon rotation counter up
+let z = 0 //Right cannon rotation counter down
 let l = 0 //Power counter
 
 function moveTank() {
@@ -234,14 +221,14 @@ function rotateCannon() {
         bulletPosition()
         bullet.style.transform = `rotate(${k}deg) translateY(${k}px)`;
         shotExp.style.transform = `rotate(${k}deg) translateY(${k}px)`;
-    } else if (tank == 2 && k >= 0 && k < 7 && k > -7) {
+    } else if (tank == 2 && g >= 0 && g < 7 && g > -7) {
         turretSound.play()
-        cannon.style.transform = `rotate(${k}deg) translateY(-${k}px)`;
+        cannon.style.transform = `rotate(${g}deg) translateY(-${g}px)`;
         bulletPosition()
-        bullet.style.transform = `rotate(${k}deg) translateY(-${k}px)`;
-        shotExp.style.transform = `rotate(${k}deg) translateY(-${k}px)`;
+        bullet.style.transform = `rotate(${g}deg) translateY(-${g}px)`;
+        shotExp.style.transform = `rotate(${g}deg) translateY(-${g}px)`;
 
-    } else if (tank == 2 && k <= 0 && k < 7 && k > -7) {
+    } else if (tank == 2 && g <= 0 && g < 7 && g > -7) {
         turretSound.play()
         cannon.style.transform = `rotate(-${z}deg) translateY(${z}px)`;
         bulletPosition()
@@ -267,15 +254,15 @@ function movements(e) {
         moveTank()
     } else if (e.key === 'ArrowUp') {
         if (tank == 1 && k > -7) k--
-        else if (tank == 2 && k < 7) {
-            k++
+        else if (tank == 2 && g < 7) {
+            g++
             z--
         }
         rotateCannon()
     } else if (e.key === 'ArrowDown') {
         if (tank == 1 && k < 7) k++
-        else if (tank == 2 && k > -7) {
-            k--
+        else if (tank == 2 && g > -7) {
+            g--
             z++
         }
         rotateCannon()
@@ -296,20 +283,10 @@ function movements(e) {
 function reset(bulletDrop, bulletCurve) {
     clearInterval(bulletDrop)
     clearInterval(bulletCurve)
-    // bullet.style.top = ''
-    // bullet.style.left = ''
-    // bullet.style.right = ''
-    // bullet.style.bottom = ''
-    bullet.style.visibility = 'hidden'
+    bullet.style.removeProperty('transform')
     if (docBody.querySelector('#bullet')) docBody.removeChild(bullet)
-    // bullet.style.top = ''
-    // bullet.style.left = ''
-    // bullet.style.right = ''
-    // bullet.style.bottom = ''
     if (tank == 1) tankActive(2, 1)
     else tankActive(1, 2)
-    k = 0
-    z = 0
     l = 0
     setTimeout(function () {
         explosion.style.visibility = 'hidden'
@@ -331,13 +308,13 @@ function healthAnimations(hpAmount) {
         tank2HP -= hpAmount
         if (hpAmount >= tank2HP) {
             tank2HP = 0
-            if (tank2HP == 0) end(player1prompt)
+            if (tank2HP == 0) end(playerName1)
         }
         hp2.style.width = `${tank2HP / 3}px`
         if (tank2HP <= 1000 && tank2HP > 500) {
             hp2.style.backgroundColor = 'yellowgreen'
             smoke2.style.visibility = 'visible'
-            
+
         } else if (tank2HP <= 500) {
             hp2.style.backgroundColor = 'red'
             fire2.style.visibility = 'visible'
@@ -348,7 +325,7 @@ function healthAnimations(hpAmount) {
         tank1HP -= hpAmount
         if (hpAmount >= tank1HP) {
             tank1HP = 0
-            if (tank1HP == 0) end(player2prompt)
+            if (tank1HP == 0) end(playerName2)
         }
         hp1.style.width = `${tank1HP / 3}px`
         if (tank1HP <= 1000 && tank1HP > 500) {
@@ -387,8 +364,7 @@ function shoot(e) {
     }
     if (e.code === 'Space' && l <= 8) {
         docBody.appendChild(bullet)
-        bulletPosition()
-        console.log(bullet.getBoundingClientRect())
+        // bulletPosition()
         shotSound.play()
         window.removeEventListener('keydown', movements)
         window.removeEventListener('keyup', shoot)
@@ -397,7 +373,7 @@ function shoot(e) {
             power.style.visibility = 'hidden'
             shotExp.style.visibility = 'hidden'
             bullet.style.visibility = 'visible'
-            bulletPosition()
+            // bulletPosition()
         }, 60)
         let bulletDrop = setInterval(function () {
             //Bullet dimensions
@@ -450,7 +426,6 @@ function shoot(e) {
             else bullet.style.transform += `rotate(-${9 - l}deg`
         }, 200)
     }
-
 }
 window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 @font-face {
     font-family: 'Panzer Regular';
     font-style: normal;
@@ -7,9 +9,9 @@
 }
 
 * {
-    font-family: 'Panzer Regular';
+    font-family: 'Panzer Regular', 'Orbitron', sans-serif;
     /* font-weight: 400; */
-
+    /* overflow: hidden; */
 }
 
 html {
@@ -123,11 +125,12 @@ html {
 
 #cannon1 {
     z-index: -100;
-    border: 0.5px solid rgb(58, 65, 33);
-    background-color: rgb(72, 80, 31);
-    width: 67px;
-    height: 5px;
-    top: 32%;
+    /* border: 0.5px solid rgb(58, 65, 33); */
+    /* background-color: rgb(72, 80, 31); */
+    background-image: url(images/top\ 2.png);
+    width: 65px;
+    height: 6px;
+    top: 33%;
     left: 68%;
 }
 
@@ -262,12 +265,14 @@ html {
 #bullet {
     /* background-image: url(images/00e5a8660c772f2.png); */
     background-size: contain;
-    /* visibility: visible; */
+    visibility: visible;
     background-position: center;
     /* border: 0.5px solid; */
     width: 15px;
     height: 5px;
     z-index: -200;
+    /* top: 73.3%;
+    left: 14.5%; */
     transition: transform 0.1s;
 }
 
