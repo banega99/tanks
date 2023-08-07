@@ -144,31 +144,33 @@ function startTimer() {
 
 function resetGame(e) {
     if (e.target.id !== 'reset') return
+    power.style.visibility = 'hidden'
+    power.style.width = '0px'
     tank1HP = 1500
     hp1.style.width = `${tank1HP / 3}px`
     hp1.style.backgroundColor = 'green'
     smoke1.style.visibility = 'hidden'
     fire1.style.visibility = 'hidden'
-    cannon.style.transform = ''
+    cannon.style.removeProperty('transform')
     tank2HP = 1500
     hp2.style.width = `${tank2HP / 3}px`
     hp2.style.backgroundColor = 'green'
     smoke2.style.visibility = 'hidden'
     fire2.style.visibility = 'hidden'
-    cannon2.style.transform = ''
+    cannon2.style.removeProperty('transform')
     overlay.style.visibility = 'hidden'
 
     tankActive(1, 2)
     if (timer) clearInterval(timer)
     timer = startTimer()
-    let i1 = 0 //Movements counter tank1
-    let i2 = 0 //Movements counter tank2
-    let k = 0 //Cannon rotation counter
-    let g = 0 //Right cannon rotation counter up
-    let z = 0 //Right cannon rotation counter down
-    let l = 0 //Power counter
+    i1 = 0 //Movements counter tank1
+    i2 = 0 //Movements counter tank2
+    k = 0 //Cannon rotation counter
+    g = 0 //Right cannon rotation counter up
+    z = 0 //Right cannon rotation counter down
+    l = 0 //Power counter
     tank1.style.transform = `translateX(${i1}px)`
-    tank2.style.transform = `translateX(${i1}px)`
+    tank2.style.transform = `translateX(${i2}px)`
     window.addEventListener('keydown', movements)
     window.addEventListener('keyup', shoot)
 }
